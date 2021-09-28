@@ -6,7 +6,7 @@
 /*   By: igomes-h <italogholanda@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:54:14 by igomes-h          #+#    #+#             */
-/*   Updated: 2021/09/28 14:33:55 by igomes-h         ###   ########.fr       */
+/*   Updated: 2021/09/28 14:36:45 by igomes-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ char	*ft_strdup(const char *s1)
 	char	*cpy;
 	size_t		size;
 
-	size = ft_strlen(s1) + 1;
+	size = 0;
+	while(s1[size])
+		size++;
+	size = size + 1;
 	cpy = (char *)malloc(size);
 	if (cpy == NULL)
 		return (NULL);
