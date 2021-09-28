@@ -6,7 +6,7 @@
 /*   By: igomes-h <italogholanda@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:54:14 by igomes-h          #+#    #+#             */
-/*   Updated: 2021/09/28 14:36:45 by igomes-h         ###   ########.fr       */
+/*   Updated: 2021/09/28 14:40:27 by igomes-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,6 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
-
 char	*ft_strdup(const char *s1)
 {
 	char	*cpy;
@@ -107,10 +97,14 @@ char	*ft_strdup(const char *s1)
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
+	size_t	dst_len;
 
 	if (!src)
 		return (0);
 	i = 0;
+	dst_len = 0;
+	while(dst[dst_len])
+		dst_len++;
 	if (size > 0)
 	{
 		while (src[i] != '\0' && (i < (size - 1)))
@@ -121,7 +115,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		dst[i] = '\0';
 	}
 	if (size == 0)
-		dst[ft_strlen(dst)] = '\0';
+		dst[dst_len] = '\0';
 	while (src[i])
 		i++;
 	return (i);
