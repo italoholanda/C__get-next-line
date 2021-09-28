@@ -6,7 +6,7 @@
 /*   By: igomes-h <italogholanda@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:54:14 by igomes-h          #+#    #+#             */
-/*   Updated: 2021/09/28 09:29:19 by igomes-h         ###   ########.fr       */
+/*   Updated: 2021/09/28 13:26:56 by igomes-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,115 +14,102 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	j;
-	char	*sub_string;
+	unsigned int	s_len;
+	unsigned int	max_len;
+	char			*sub;
 
-	sub_string = (char *)malloc(sizeof(*s) * (len + 1));
-	if (!sub_string)
-		return (0);
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (i >= start && j < len)
-		{
-			sub_string[j] = s[i];
-			j++;
-		}
-		i++;
-	}
-	sub_string[j] = 0;
-	return (sub_string);
-}
-
-char	*ft_strdup(const char *s)
-{
-	size_t	len;
-	char	*copy;
-
-	len = ft_strlen(s) + 1;
-	copy = malloc(len);
-	if (!copy)
-		return (0);
-	ft_strlcpy(copy, s, len);
-	return (copy);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	char	*str;
-
-	str = (char *)s;
-	while (*str != (char)c)
-	{
-		if (!*str)
-			return (0);
-		++str;
-	}
-	return (str);
-}
-
-static char	*ft_strcat(const char *s1, const char *s2, char *new_str)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (i < ft_strlen(s1))
-	{
-		new_str[i] = s1[i];
-		++i;
-	}
-	while (i < ft_strlen(s1) + ft_strlen(s2))
-	{
-		new_str[i] = s2[j];
-		++i;
-		++j;
-	}
-	new_str[i] = 0;
-	return (new_str);
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start < s_len)
+		max_len = s_len - start;
+	if (start >= s_len)
+		max_len = 0;
+	if (max_len > len)
+		max_len = len;
+	sub = (char *)malloc((max_len + 1) * sizeof(char));
+	if (sub == NULL)
+		return (NULL);
+	ft_strlcpy(sub, s + start, max_len + 1);
+	return (sub);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	s1_len;
-	size_t	s2_len;
-	char	*new_str;
+	char	*str;
+	char	*pos;
 
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	new_str = malloc((s1_len + s2_len) + 1);
-	if (!new_str)
-		return (0);
-	ft_strcat(s1, s2, new_str);
-	return (new_str);
+	if (!s1 || !s2)
+		return (NULL);
+	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	pos = str;
+	while (*s1)
+		*str++ = *s1++;
+	while (*s2)
+		*str++ = *s2++;
+	*str = '\0';
+	return (pos);
 }
 
-size_t	ft_strlen(const char *str)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	iterator;
+	if (c > 127)
+		c %= 256;
+	while (*s)
+	{
+		if (*s == c)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == c)
+		return ((char *)s);
+	return (NULL);
+}
 
-	iterator = 0;
-	while (str[iterator])
-		iterator++;
-	return (iterator);
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*cpy;
+	size_t		size;
+
+	size = ft_strlen(s1) + 1;
+	cpy = (char *)malloc(size);
+	if (cpy == NULL)
+		return (NULL);
+	ft_strlcpy(cpy, s1, size);
+	return (cpy);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	unsigned int	i;
+	size_t	i;
 
+	if (!src)
+		return (0);
 	i = 0;
-	if (size != 0)
+	if (size > 0)
 	{
-		while (src[i] && i < size - 1)
+		while (src[i] != '\0' && (i < (size - 1)))
 		{
 			dst[i] = src[i];
-			++i;
+			i++;
 		}
-		dst[i] = 0;
+		dst[i] = '\0';
 	}
-	return (ft_strlen(src));
+	if (size == 0)
+		dst[ft_strlen(dst)] = '\0';
+	while (src[i])
+		i++;
+	return (i);
 }
