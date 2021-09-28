@@ -6,7 +6,7 @@
 /*   By: igomes-h <italogholanda@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:54:14 by igomes-h          #+#    #+#             */
-/*   Updated: 2021/09/28 14:40:27 by igomes-h         ###   ########.fr       */
+/*   Updated: 2021/09/28 14:45:03 by igomes-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	s_len = 0;
-	while(s[s_len])
+	while (s[s_len])
 		s_len++;
 	if (start < s_len)
 		max_len = s_len - start;
@@ -47,9 +47,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	s1_len = 0;
 	s2_len = 0;
-	while(s1[s1_len])
+	while (s1[s1_len])
 		s1_len++;
-	while(s2[s2_len])
+	while (s2[s2_len])
 		s2_len++;
 	str = (char *)malloc((s1_len + s2_len + 1) * sizeof(char));
 	if (str == NULL)
@@ -81,10 +81,10 @@ char	*ft_strchr(const char *s, int c)
 char	*ft_strdup(const char *s1)
 {
 	char	*cpy;
-	size_t		size;
+	size_t	size;
 
 	size = 0;
-	while(s1[size])
+	while (s1[size])
 		size++;
 	size = size + 1;
 	cpy = (char *)malloc(size);
@@ -103,7 +103,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		return (0);
 	i = 0;
 	dst_len = 0;
-	while(dst[dst_len])
+	while (dst[dst_len])
 		dst_len++;
 	if (size > 0)
 	{
