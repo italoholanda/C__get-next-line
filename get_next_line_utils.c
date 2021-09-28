@@ -6,7 +6,7 @@
 /*   By: igomes-h <italogholanda@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:54:14 by igomes-h          #+#    #+#             */
-/*   Updated: 2021/09/28 14:28:15 by igomes-h         ###   ########.fr       */
+/*   Updated: 2021/09/28 14:33:55 by igomes-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
 	char	*pos;
+	size_t	s1_len;
+	size_t	s2_len;
 
 	if (!s1 || !s2)
 		return (NULL);
-	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	s1_len = 0;
+	s2_len = 0;
+	while(s1[s1_len])
+		s1_len++;
+	while(s2[s2_len])
+		s2_len++;
+	str = (char *)malloc((s1_len + s2_len + 1) * sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	pos = str;
