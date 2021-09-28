@@ -6,7 +6,7 @@
 /*   By: igomes-h <italogholanda@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 07:22:13 by igomes-h          #+#    #+#             */
-/*   Updated: 2021/09/28 09:17:22 by igomes-h         ###   ########.fr       */
+/*   Updated: 2021/09/28 09:35:38 by igomes-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	read_fd(char **buf, char **saved_buf, char **line, int fd)
 char	*get_next_line(int fd)
 {
 	static char	*saved_buf;
-	int			*buf;
+	char		*buf;
 	char		*line;
 
 	if (BUFFER_SIZE <= 0)
@@ -75,4 +75,9 @@ char	*get_next_line(int fd)
 		free(buf);
 		return (0);
 	}
+	read_fd(&buf, &saved_buf, &line, fd);
+	free(buf);
+	if (!line)
+		return (0);
+	return (line);
 }
