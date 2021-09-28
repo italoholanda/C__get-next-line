@@ -6,7 +6,7 @@
 /*   By: igomes-h <italogholanda@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 07:22:13 by igomes-h          #+#    #+#             */
-/*   Updated: 2021/09/28 09:35:38 by igomes-h         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:52:58 by igomes-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	get_line(char **saved_buf, char **line)
 	if ((*saved_buf)[i] == '\n')
 	{
 		tmp = *saved_buf;
-		*line = ft_substr(tmp, 0, 1 + 2);
+		*line = ft_substr(tmp, 0, i + 1);
 		*saved_buf = ft_strdup(tmp + i + 1);
 		free(tmp);
 	}
