@@ -6,9 +6,11 @@
 /*   By: igomes-h <italogholanda@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 08:54:14 by igomes-h          #+#    #+#             */
-/*   Updated: 2021/09/28 08:57:43 by igomes-h         ###   ########.fr       */
+/*   Updated: 2021/09/28 09:29:19 by igomes-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -96,4 +98,31 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	ft_strcat(s1, s2, new_str);
 	return (new_str);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	iterator;
+
+	iterator = 0;
+	while (str[iterator])
+		iterator++;
+	return (iterator);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	unsigned int	i;
+
+	i = 0;
+	if (size != 0)
+	{
+		while (src[i] && i < size - 1)
+		{
+			dst[i] = src[i];
+			++i;
+		}
+		dst[i] = 0;
+	}
+	return (ft_strlen(src));
 }
