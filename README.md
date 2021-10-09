@@ -24,7 +24,7 @@ This project contains a function that will read a File Descriptor and return a l
 ```
 char *get_next_line(int fd);
 ```
-It's want to receive only the File Descriptor value
+File descriptor is the only required argument
 
 
 - You need to compile this function defining your buffer size.
